@@ -1,16 +1,13 @@
-package sender;
-
 import entity.Country;
 import entity.Location;
 import geo.GeoServiceImpl;
 import i18n.LocalizationServiceImpl;
 import org.junit.jupiter.api.*;
 import org.mockito.Mockito;
+import sender.MessageSenderImpl;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class MainTest {
 
@@ -56,7 +53,7 @@ class MainTest {
 
         String expected = russianText;
         String actual = messageSenderImpl.send(mock);
-        assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual);
     }
 
     @Test
@@ -75,7 +72,7 @@ class MainTest {
 
         String expected = englishText;
         String actual = messageSenderImpl.send(mock);
-        assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual);
     }
 
     @Test
@@ -83,8 +80,8 @@ class MainTest {
         GeoServiceImpl geoServiceImpl = new GeoServiceImpl();
         Location expected = new Location("New York", Country.USA, " 10th Avenue", 32);
         Location actual = geoServiceImpl.byIp(NEW_YORK_IP);
-        assertEquals(expected.getCity(), actual.getCity());
-        assertEquals(expected.getCountry(), actual.getCountry());
+        Assertions.assertEquals(expected.getCity(), actual.getCity());
+        Assertions.assertEquals(expected.getCountry(), actual.getCountry());
     }
 
     @Test
@@ -92,7 +89,7 @@ class MainTest {
         LocalizationServiceImpl localizationServiceImpl = new LocalizationServiceImpl();
         String expected = englishText;
         String actual = localizationServiceImpl.locale(Country.USA);        // Проверил работу метода public String locale(Country country).
-        assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual);
     }
 
     @Test
@@ -100,6 +97,6 @@ class MainTest {
         LocalizationServiceImpl localizationServiceImpl = new LocalizationServiceImpl();
         String expected = russianText;
         String actual = localizationServiceImpl.locale(Country.RUSSIA);     // Проверил работу метода public String locale(Country country).
-        assertEquals(expected, actual);
+        Assertions.assertEquals(expected, actual);
     }
 }
